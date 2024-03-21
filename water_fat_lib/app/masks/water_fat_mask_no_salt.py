@@ -1,25 +1,12 @@
 # %%
 import matplotlib.pyplot as plt
-from bmrr_wrapper.Interfaces.ImDataParams.ImDataParamsBMRR import ImDataParamsBMRR
 import numpy as np
 from scipy.ndimage import binary_erosion
+from water_fat_lib.app.data_loader.data_io import load_data
 
 path = "/home/marrieta/Thesis/data/ArgudoNAS/2023_12_08/Phantom/DICOM/IM_0003"
 
-if ".mat" in path:
-    image = ImDataParamsBMRR(path)
-else:
-    image = ImDataParamsBMRR(path, dicom_enhanced=True)
-
-TE_s = image.ImDataParams['TE_s'].astype(float)
-
-if isinstance(image.ImDataParams['TE_s'], np.ndarray):
-    image.ImDataParams['TE_s'] = image.ImDataParams['TE_s'].tolist()
-try:
-    image.ImDataParams['TE_s'] = [image.ImDataParams['TE_s'][0]]  # set_theta does not work for more than 1 TEs
-except TypeError as e:
-    image.ImDataParams['TE_s'] = [image.ImDataParams['TE_s']]
-    print(e)
+image = load_data(image_path=path, return_echo_time=False)
 
 # Initialize mask, unwrap phase and fat model with theta
 filled_mask = image.get_tissueMaskFilled(10)

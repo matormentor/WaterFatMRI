@@ -1,4 +1,3 @@
-# %%
 import copy
 
 import matplotlib.pyplot as plt
@@ -7,25 +6,12 @@ import numpy as np
 from scipy.ndimage import binary_erosion, binary_dilation
 
 from water_fat_lib.app.plot.plot_3d import plot3d
-from bmrr_wrapper.Interfaces.ImDataParams.ImDataParamsBMRR import ImDataParamsBMRR
+from water_fat_lib.app.data_loader.data_io import load_data
 matplotlib.use("TkAgg")
 
 path = "Z:\\Argudo\\2023_12_08\\Phantom\\DICOM\\IM_0078"
 
-if ".mat" in path:
-    image = ImDataParamsBMRR(path)
-else:
-    image = ImDataParamsBMRR(path, dicom_enhanced=True)
-
-TE_s = image.ImDataParams['TE_s'].astype(float)
-
-# if isinstance(image.ImDataParams['TE_s'], np.ndarray):
-#     image.ImDataParams['TE_s'] = image.ImDataParams['TE_s'].tolist()
-try:
-    image.ImDataParams['TE_s'] = [image.ImDataParams['TE_s'][0]]  # set_theta does not work for more than 1 TEs
-except TypeError as e:
-    image.ImDataParams['TE_s'] = [image.ImDataParams['TE_s']]
-    print(e)
+image = load_data(image_path=path, return_echo_time=False)
 
 # Initialize mask, unwrap phase and fat model with theta
 filled_mask = image.get_tissueMaskFilled(10)
@@ -37,8 +23,8 @@ image.set_UTEphase()
 print(image.WFIparams['UTEphase'].shape)
 plt.hist(image.WFIparams['UTEphase'][fit_mask].flatten(), 100)
 plt.show()
-# %%
 
+# %%
 fat_mask = np.zeros_like(filled_mask)
 fat_mask[(2.1 < image.WFIparams["UTEphase"]) & (image.WFIparams["UTEphase"] < 3)] = 1
 fat_mask = binary_erosion(fat_mask, np.ones((5, 5, 5)), iterations=2)

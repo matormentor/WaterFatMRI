@@ -2,7 +2,7 @@ from water_fat_lib.app.helper.phase_theta_operations import *
 from water_fat_lib.app.fit.fit_functions import *
 from water_fat_lib.app.fit.fit import fit
 
-from scipy.ndimage import binary_erosion
+from scipy.ndimage import binary_erosion, binary_dilation
 from bmrr_wrapper.Interfaces.ImDataParams.ImDataParamsBMRR import ImDataParamsBMRR
 
 from water_fat_lib.app.helper.setUp import main_set_up, fit_set_up
@@ -25,13 +25,28 @@ def phantom_fit_generator(image: ImDataParamsBMRR, theta_name: str, get_water_fa
 
     # Set Fit Masks
 
-    fat_mask = np.ones_like(filled_mask)
-    fat_mask[image.WFIparams["UTEphase"] > -3] = 0  # Limit set by looking at phantom
-    water_mask = filled_mask != fat_mask
+    # fat_mask = np.ones_like(filled_mask)
+    # fat_mask[image.WFIparams["UTEphase"] > -3] = 0  # Limit set by looking at phantom
+    # water_mask = filled_mask != fat_mask
+    #
+    # kernel = np.ones((3, 3, 3), np.uint8)
+    # water_mask = binary_erosion(water_mask, kernel, iterations=1)
+    # fat_mask = binary_erosion(fat_mask, kernel, iterations=1)
+    # mix_mask = water_mask.astype(bool) + fat_mask.astype(bool)
+    # fit_masks = water_mask, fat_mask
 
-    kernel = np.ones((3, 3, 3), np.uint8)
-    water_mask = binary_erosion(water_mask, kernel, iterations=1)
-    fat_mask = binary_erosion(fat_mask, kernel, iterations=1)
+    # Masks for IM0078 Salt Water Fat
+
+    fat_mask = np.zeros_like(filled_mask)
+    fat_mask[(2.1 < image.WFIparams["UTEphase"]) & (image.WFIparams["UTEphase"] < 3)] = 1
+    fat_mask = binary_erosion(fat_mask, np.ones((5, 5, 5)), iterations=2)
+    fat_mask = binary_erosion(fat_mask, np.ones((3, 3, 3)), iterations=3)
+    fat_mask = binary_dilation(fat_mask, np.ones((5, 5, 5)), iterations=3)
+
+    water_mask = filled_mask != fat_mask
+    water_mask = binary_erosion(water_mask, np.ones((6, 6, 6)), iterations=3)
+    water_mask = binary_dilation(water_mask, np.ones((5, 5, 5)), iterations=2)
+
     mix_mask = water_mask.astype(bool) + fat_mask.astype(bool)
     fit_masks = water_mask, fat_mask
 
@@ -39,10 +54,14 @@ def phantom_fit_generator(image: ImDataParamsBMRR, theta_name: str, get_water_fa
 
     masked_signal, masked_phase, smooth_phase = fit_set_up(image=image, filled_mask=filled_mask)
 
-    plt.imshow(smooth_phase[:, :, 161])
+    fig = plt.figure()
+    plt.plot(range(0, smooth_phase.shape[0]), smooth_phase[:, 161, 161])
+    plt.plot(range(0, smooth_phase.shape[0]), masked_phase[:, 161, 161])
     img_name = sig_path.split("/")[-1]
     plt.title(f"Phase after Smoothing Check for: {img_name}")
-    plt.show()
+    plt.legend(['smooth_phase', "UTE_phase"])
+    fig.show()
+
     # return 0
 
     # ________________________________ Define weights ___________________________________________
