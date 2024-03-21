@@ -25,6 +25,7 @@ def phantom_fit_run(image_name, folder, path, forward_modelling, is_lung):
     image.WFIparams['water'], image.WFIparams['fat'], image.WFIparams['phi'], filtered_signal, is_modelled = phantom_fit_generator(
             image=image,
             theta_name='model_theta',
+            get_water_fat = True,
             do_forward=forward_modelling,
             is_lung=is_lung,
             sig_path=f'../output_signals_phi/{data_name}')
