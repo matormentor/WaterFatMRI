@@ -1,7 +1,7 @@
 from typing import Callable
 from torchmin import minimize
 import scipy.optimize as optimize
-from MateoLib.app.fit.fit_functions import *
+from water_fat_lib.app.fit.fit_functions import *
 
 
 def fit(function: Callable, nparams: int, phase: np.ndarray, weights=None, fit_mask=None) -> dict:

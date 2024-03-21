@@ -1,4 +1,4 @@
-from MateoLib.runs import gn_fit_run
+from water_fat_lib.runs import gn_fit_run
 
 
 signal_name = "BWS_ImDataParams.mat"

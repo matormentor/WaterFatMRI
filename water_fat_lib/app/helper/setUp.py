@@ -1,7 +1,7 @@
 from typing import NamedTuple, MutableSequence
 
-from MateoLib.app.fit.model_field_map import subtract_b0_phase
-from MateoLib.app.helper.phase_theta_operations import get_phase_median_filtered
+from water_fat_lib.app.fit.model_field_map import subtract_b0_phase
+from water_fat_lib.app.helper.phase_theta_operations import get_phase_median_filtered
 
 
 class FitSetUp(NamedTuple):

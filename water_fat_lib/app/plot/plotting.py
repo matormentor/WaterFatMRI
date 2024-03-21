@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from MateoLib.app.plot.signal_loader.signal_loader import load_fat_water
+from water_fat_lib.app.plot.signal_loader.signal_loader import load_fat_water
 from typing import List
 
 

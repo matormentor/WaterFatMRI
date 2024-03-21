@@ -6,7 +6,7 @@ import matplotlib
 import numpy as np
 from scipy.ndimage import binary_erosion, binary_dilation
 
-from MateoLib.app.plot.plot_3d import plot3d
+from water_fat_lib.app.plot.plot_3d import plot3d
 from bmrr_wrapper.Interfaces.ImDataParams.ImDataParamsBMRR import ImDataParamsBMRR
 matplotlib.use("TkAgg")
 

@@ -1,10 +1,10 @@
-from MateoLib.app.helper.phase_theta_operations import *
-from MateoLib.app.fit.fit_functions import *
-from MateoLib.app.fit.fit import fit
+from water_fat_lib.app.helper.phase_theta_operations import *
+from water_fat_lib.app.fit.fit_functions import *
+from water_fat_lib.app.fit.fit import fit
 
 from bmrr_wrapper.Interfaces.ImDataParams.ImDataParamsBMRR import ImDataParamsBMRR
 
-from MateoLib.app.helper.setUp import main_set_up, fit_set_up, gn_set_up
+from water_fat_lib.app.helper.setUp import main_set_up, fit_set_up, gn_set_up
 
 
 def fit_generator(image: ImDataParamsBMRR, theta_name: str, get_water_fat=False, sig_path='', do_forward=True, is_lung: bool = False):

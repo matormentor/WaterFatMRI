@@ -1,6 +1,6 @@
 import os
-from MateoLib.app.water_fat_generator.generators import *
-from MateoLib.app.water_fat_generator.generator import *
+from water_fat_lib.app.water_fat_generator.generators import *
+from water_fat_lib.app.water_fat_generator.generator import *
 from bmrr_wrapper.Interfaces.ImDataParams.ImDataParamsBMRR import ImDataParamsBMRR
 
 
