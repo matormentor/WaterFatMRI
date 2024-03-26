@@ -31,6 +31,7 @@ fat_mask = binary_erosion(fat_mask, np.ones((5, 5, 5)), iterations=2)
 fat_mask = binary_erosion(fat_mask, np.ones((3, 3, 3)), iterations=3)
 fat_mask = binary_dilation(fat_mask, np.ones((5, 5, 5)), iterations=3)
 
+# fat_mask = binary_erosion(fat_mask, np.ones((6, 6, 6)), iterations=3)
 img_sub = copy.deepcopy(image.WFIparams["UTEphase"])
 img_sub[fat_mask] = -5
 plot3d(img_sub)
@@ -40,6 +41,8 @@ plot3d(img_sub)
 water_mask = fit_mask != fat_mask
 water_mask = binary_erosion(water_mask, np.ones((6, 6, 6)), iterations=3)
 water_mask = binary_dilation(water_mask, np.ones((5, 5, 5)), iterations=2)
+
+water_mask = binary_erosion(water_mask, np.ones((6, 6, 6)), iterations=4)
 
 img_sub2 = copy.deepcopy(image.WFIparams["UTEphase"])
 img_sub2[water_mask] = -5

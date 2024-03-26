@@ -4,12 +4,13 @@ import numpy as np
 from scipy.ndimage import binary_erosion
 from water_fat_lib.app.data_loader.data_io import load_data
 
-path = "/home/marrieta/Thesis/data/ArgudoNAS/2023_12_08/Phantom/DICOM/IM_0003"
+path = "Z:\\Argudo\\2023_12_08\\Phantom\\DICOM\\IM_0078"
 
 image = load_data(image_path=path, return_echo_time=False)
 
 # Initialize mask, unwrap phase and fat model with theta
 filled_mask = image.get_tissueMaskFilled(10)
+
 fit_mask = filled_mask
 image.Masks['tissueMask'] = filled_mask
 image.BFRparams['BFRmask'] = image.Masks['tissueMask']
