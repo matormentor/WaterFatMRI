@@ -22,7 +22,7 @@ def get_plt_entries(img: ImDataParamsBMRR, map_params_to_keys: dict = None, vmax
             if filled_mask is None:
                 filled_mask = np.ones_like(image_to_plot).astype(bool)
             plt_lim_low = np.percentile(image_to_plot[filled_mask], 2)
-            plt_lim_high = np.percentile(image_to_plot[filled_mask], 95)
+            plt_lim_high = np.percentile(image_to_plot[filled_mask], 98)
             # pltLimLow = image.min()
             # pltLimHigh = image.max()
             if (key in ["water", "fat"]) and (vmax == 1):
@@ -190,4 +190,4 @@ def get_water_center_phantom():
 
 
 def get_fat_center_phantom():
-    return Center(x=144, y=119, z=161)
+    return Center(x=119, y=144, z=161)
