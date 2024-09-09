@@ -3,10 +3,10 @@ from plot_helper import line_plot_vs_2_images
 
 signal_name = "HWS"
 
-folder_2 = "C:\\Users\\USUARIO\\Desktop\\Thesis\\MRIThesis\\signals\\07_03_2024_2nd_polyfit_abstract\\no_forward\\"
+folder_2 = "D:\\MRIsignals\\07_03_2024_2nd_polyfit_abstract\\no_forward\\"
 WFIpath_2_GN_reg_10 = folder_2 + f"{signal_name}_ImDataParams__reg10_GN_w_init.dcm_WFIparams.mat"
 
-folder_4 = "C:\\Users\\USUARIO\\Desktop\\Thesis\\MRIThesis\\signals\\07_03_2024_4th_polyfit_abstract\\no_forward\\"
+folder_4 = "D:\\MRIsignals\\07_03_2024_4th_polyfit_abstract\\no_forward\\"
 WFIpath_4_GN_reg_10 = folder_4 + f"{signal_name}_ImDataParams__reg10_GN_w_init.dcm_WFIparams.mat"
 
 anatomies_folder = "Z:\\Kronthaler\\Conferences\\ISMRM2022\\Abstract\\UTE_sDixon_DifferentApplications\\"

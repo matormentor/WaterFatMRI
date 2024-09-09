@@ -27,7 +27,7 @@ def get_plt_entries(img: ImDataParamsBMRR, map_params_to_keys: dict = None, vmax
             # pltLimHigh = image.max()
             if (key in ["water", "fat"]) and (vmax == 1):
                 plt_lim_low = 0
-                plt_lim_high = 1
+                # plt_lim_high = 1
             # elif key == "phi":
             #     plt_lim_low = -2.9
             #     plt_lim_high = -2.7
@@ -58,10 +58,10 @@ def line_plot_keys(image: ImDataParamsBMRR, keys: list = None, shift=False, titl
         if shift:
             signals[i] += np.pi
             signals[i][~mask] = 0
-        if key == "forward_phase":
-            signals[i] += 2
-            # signals[i] -= np.pi
-            signals[i][~mask] = 0
+            if key == "forward_phase":
+                signals[i] += 2
+                # signals[i] -= np.pi
+                signals[i][~mask] = 0
 
     # x-axes
     axes[0].plot(range(0, signals[0].shape[0]), signals[0][:, y, z])
@@ -69,7 +69,7 @@ def line_plot_keys(image: ImDataParamsBMRR, keys: list = None, shift=False, titl
     axes[0].plot(range(0, signals[2].shape[0]), signals[2][:, y, z], "--")
     axes[0].plot(range(0, signals[3].shape[0]), signals[3][:, y, z], ":")
     axes[0].set_title(f'{title}: x-axes')
-    axes[0].legend([keys[0], keys[1], keys[2], keys[3]], fontsize='xx-small', loc='center left')
+    # axes[0].legend([keys[0], keys[1], keys[2], keys[3]], fontsize='xx-small', bbox_to_anchor=(1.3, 1))
 
     # y-axes
     axes[1].plot(range(0, signals[0].shape[1]), signals[0][x, :, z])
@@ -77,7 +77,7 @@ def line_plot_keys(image: ImDataParamsBMRR, keys: list = None, shift=False, titl
     axes[1].plot(range(0, signals[2].shape[1]), signals[2][x, :, z], "--")
     axes[1].plot(range(0, signals[3].shape[0]), signals[3][x, :, z], ":")
     axes[1].set_title('y-axes')
-    axes[1].legend([keys[0], keys[1], keys[2], keys[3]], fontsize='xx-small', loc='center left')
+    axes[1].legend([keys[0], keys[1], keys[2], keys[3]], fontsize='xx-small', bbox_to_anchor=(1.3, 1))
 
     # z-axes
     axes[2].plot(range(0, signals[0].shape[1]), signals[0][x, y, :])
@@ -85,7 +85,7 @@ def line_plot_keys(image: ImDataParamsBMRR, keys: list = None, shift=False, titl
     axes[2].plot(range(0, signals[2].shape[1]), signals[2][x, y, :], "--")
     axes[2].plot(range(0, signals[3].shape[0]), signals[3][x, y, :], ":")
     axes[2].set_title('z-axes')
-    axes[2].legend([keys[0], keys[1], keys[2], keys[3]], fontsize='xx-small', loc='center left')
+    # axes[2].legend([keys[0], keys[1], keys[2], keys[3]], fontsize='xx-small', bbox_to_anchor=(1.3, 1))
     plt.show()
     
 
