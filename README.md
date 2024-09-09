@@ -3,8 +3,14 @@
 Novel Water Fat 3D Separation for MRI signals using one Echo developed for Ultra Short Echo Time
 
 ### Presented research in ISMRM 2024
+![image](https://github.com/user-attachments/assets/53e6c191-4402-4861-8f1c-aa0f16ce0cb7)
 
+## Algorithm 
+![image](https://github.com/user-attachments/assets/2a81bd3e-11b0-497e-8e20-d3c2e1a84f53)
 
+## Presentation
+
+May be found in the following [link](defense_thesis.pptx)
 
 ## Usage
 
@@ -18,10 +24,6 @@ There is a small dependency on the **BMRR Python** library which is not included
 ## Hypothesis
 
 Initialization of a non-linear second order optimization method used to capture the unwanted phase contributions form the MRI scan helps improve the convergence path while increasing computational space and time efficiency
-
-## Presentation
-
-May be found in the following [link](defense_thesis.pptx)
 
 ## Thesis
 
