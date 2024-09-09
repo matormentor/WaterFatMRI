@@ -3,10 +3,10 @@
 Novel Water Fat 3D Separation for MRI signals using one Echo developed for Ultra Short Echo Time
 
 ### Presented research in ISMRM 2024
-![image](https://github.com/user-attachments/assets/53e6c191-4402-4861-8f1c-aa0f16ce0cb7)
+<img src="https://github.com/user-attachments/assets/53e6c191-4402-4861-8f1c-aa0f16ce0cb7" alt="brain" width="80%">
 
 ## Algorithm 
-![image](https://github.com/user-attachments/assets/2a81bd3e-11b0-497e-8e20-d3c2e1a84f53)
+<img src="https://github.com/user-attachments/assets/2a81bd3e-11b0-497e-8e20-d3c2e1a84f53" alt="algorithm" width="30%">
 
 ## Presentation
 
